@@ -1,0 +1,33 @@
+name: Post
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */12 * * *"
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  watch:
+    types: [started]
+
+jobs:
+  run:
+    name: Post
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 16.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16.x
+        cache: 'yarn'
+
+    - name: Install Dependencies 📦
+      run: yarn
+
+    - name: Post to Discord
+      env:
+        WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+      run: ts-node ./src/index.ts
