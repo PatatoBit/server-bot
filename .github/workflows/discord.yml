@@ -27,7 +27,12 @@ jobs:
     - name: Install Dependencies 📦
       run: yarn && yarn global add typescript ts-node
 
+    - name: Build 🚧
+      run: yarn run build
+      env:
+        WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+
     - name: Post to Discord
       env:
         WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-      run: ts-node ./src/index.ts
+      run: yarn start
