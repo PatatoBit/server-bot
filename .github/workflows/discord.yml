@@ -3,7 +3,7 @@ name: Post
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 */12 * * *"
+    - cron: "0 * * * *"
   push:
     branches: [main]
   pull_request:
@@ -33,6 +33,4 @@ jobs:
         WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
 
     - name: Post to Discord
-      env:
-        WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
       run: yarn start
