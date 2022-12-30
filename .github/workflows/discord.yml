@@ -29,8 +29,8 @@ jobs:
 
     - name: Build 🚧
       run: yarn run build
-      env:
-        WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
 
     - name: Post to Discord
+      env:
+        WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
       run: yarn start
