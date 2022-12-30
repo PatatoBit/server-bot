@@ -26,6 +26,7 @@ jobs:
 
     - name: Install Dependencies 📦
       run: yarn
+      run: yarn global add typescript ts-node
 
     - name: Post to Discord
       env:
