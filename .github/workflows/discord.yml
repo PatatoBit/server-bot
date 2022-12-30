@@ -25,8 +25,7 @@ jobs:
         cache: 'yarn'
 
     - name: Install Dependencies 📦
-      run: yarn
-      run: yarn global add typescript ts-node
+      run: yarn && yarn global add typescript ts-node
 
     - name: Post to Discord
       env:
