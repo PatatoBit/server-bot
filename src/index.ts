@@ -1,13 +1,13 @@
 import dotenv from "dotenv";
 import axios from "axios";
 
-import getPadoru from "./padoru.js";
+import getQuote from "./quote.js";
 
 dotenv.config();
 
 const webhookURL = process.env.WEBHOOK_URL;
 
-const { data } = await getPadoru();
+const { content, author } = await getQuote();
 
 axios(webhookURL, {
   method: "POST",
@@ -15,7 +15,7 @@ axios(webhookURL, {
     "Content-Type": "application/json",
   },
   data: {
-    username: "Padoru",
-    content: data.results[0].media[0].gif.url,
+    username: "Random Quote",
+    content: `"**${content}**"\n- *${author}*`,
   },
 });
